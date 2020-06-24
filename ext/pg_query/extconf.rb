@@ -22,6 +22,9 @@ unless Dir.exist?(libdir)
   system("tar -xzf #{workdir}/libpg_query.tar.gz") || raise('ERROR')
 end
 
+# Copy arch_arm.h to postgres include folder attempt to fix issues
+system("cp #{workdir}/arch-arm.h #{libdir}/src/postgres/include/port/atomics/")
+
 unless Dir.exist?(libfile)
   # Build libpg_query (and parts of PostgreSQL)
   system("cd #{libdir}; #{ENV['MAKE'] || (RUBY_PLATFORM =~ /bsd/ ? 'gmake' : 'make')} build")
