@@ -30,6 +30,9 @@ end
 # Copy test files (this intentionally overwrites existing files!)
 system("cp #{libdir}/testdata/* #{gemdir}/spec/files/")
 
+# Copy arch_arm.h to postgres include folder attempt to fix issues
+
+
 $objs = ['pg_query_ruby.o']
 
 $LOCAL_LIBS << '-lpg_query'
